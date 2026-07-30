@@ -1,0 +1,1 @@
+"""SecondSelf shared library package."""

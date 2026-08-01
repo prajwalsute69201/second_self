@@ -159,8 +159,13 @@ def read_wiki_notes() -> List[Dict]:
     Returns a list of dicts with keys:
         ``id``, ``raw_id``, ``para``, ``tags``, ``summary``,
         ``created``, ``links``, ``body``, ``path``
+
+    Duplicate IDs (same note filed under two PARA folders) are
+    deduplicated: the first occurrence wins and a warning is printed.
     """
     notes: List[Dict] = []
+    seen_ids: set = set()
+
     if not WIKI_DIR.exists():
         return notes
 
@@ -183,8 +188,19 @@ def read_wiki_notes() -> List[Dict]:
                         frontmatter = {}
                     body = parts[2].strip()
 
+            note_id = frontmatter.get("id", note_path.stem)
+
+            # Skip duplicates — same ID already loaded from another PARA folder
+            if note_id in seen_ids:
+                print(
+                    f"[storage] WARNING: duplicate id '{note_id}' at "
+                    f"'{note_path}' — skipped (first occurrence kept)."
+                )
+                continue
+            seen_ids.add(note_id)
+
             notes.append({
-                "id": frontmatter.get("id", note_path.stem),
+                "id": note_id,
                 "raw_id": frontmatter.get("raw_id", ""),
                 "para": frontmatter.get("para", para_dir.name),
                 "tags": frontmatter.get("tags", []) or [],

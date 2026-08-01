@@ -1,5 +1,106 @@
 {
-  "raw_processed": {},
+  "raw_processed": {
+    "2026-07-30_08aa4657": {
+      "note_id": "08aa4657",
+      "para": "Projects",
+      "classified_at": "2026-07-31T07:25:09Z"
+    },
+    "2026-07-30_39c30ca7": {
+      "note_id": "39c30ca7",
+      "para": "Areas",
+      "classified_at": "2026-07-31T07:25:14Z"
+    },
+    "2026-07-30_769085b8": {
+      "note_id": "769085b8",
+      "para": "Projects",
+      "classified_at": "2026-07-31T07:25:15Z"
+    },
+    "2026-07-30_a5d0da0a": {
+      "note_id": "a5d0da0a",
+      "para": "Projects",
+      "classified_at": "2026-07-31T07:25:17Z"
+    },
+    "2026-07-30_a69e027c": {
+      "note_id": "a69e027c",
+      "para": "Resources",
+      "classified_at": "2026-07-31T07:25:32Z"
+    },
+    "2026-07-30_b0afc2ae": {
+      "note_id": "b0afc2ae",
+      "para": "Resources",
+      "classified_at": "2026-07-31T07:25:34Z"
+    },
+    "2026-07-30_b869f005": {
+      "note_id": "b869f005",
+      "para": "Resources",
+      "classified_at": "2026-07-31T07:26:02Z"
+    },
+    "2026-07-30_cb673be4": {
+      "note_id": "cb673be4",
+      "para": "Resources",
+      "classified_at": "2026-07-31T07:26:06Z"
+    },
+    "2026-07-30_ef87baf9": {
+      "note_id": "ef87baf9",
+      "para": "Resources",
+      "classified_at": "2026-07-31T07:26:15Z"
+    },
+    "2026-07-31_102829fb": {
+      "note_id": "102829fb",
+      "para": "Projects",
+      "classified_at": "2026-07-31T07:26:26Z"
+    },
+    "2026-07-31_151365a5": {
+      "note_id": "151365a5",
+      "para": "Resources",
+      "classified_at": "2026-07-31T07:26:38Z"
+    },
+    "2026-07-31_2c76124b": {
+      "note_id": "2c76124b",
+      "para": "Projects",
+      "classified_at": "2026-07-31T07:26:49Z"
+    },
+    "2026-07-31_30d3ed7d": {
+      "note_id": "30d3ed7d",
+      "para": "Projects",
+      "classified_at": "2026-07-31T07:26:51Z"
+    },
+    "2026-07-31_37815ae4": {
+      "note_id": "37815ae4",
+      "para": "Projects",
+      "classified_at": "2026-07-31T07:27:02Z"
+    },
+    "2026-07-31_4cce48b3": {
+      "note_id": "4cce48b3",
+      "para": "Resources",
+      "classified_at": "2026-07-31T07:27:03Z"
+    },
+    "2026-07-31_5e522f9c": {
+      "note_id": "5e522f9c",
+      "para": "Projects",
+      "classified_at": "2026-07-31T07:27:06Z"
+    },
+    "2026-07-31_87727685": {
+      "note_id": "87727685",
+      "para": "Projects",
+      "classified_at": "2026-07-31T07:27:07Z"
+    },
+    "2026-07-31_d805ee03": {
+      "note_id": "d805ee03",
+      "para": "Areas",
+      "classified_at": "2026-07-31T07:27:10Z"
+    },
+    "2026-07-31_ec9acd95": {
+      "note_id": "ec9acd95",
+      "para": "Projects",
+      "classified_at": "2026-07-31T07:27:21Z"
+    },
+    "2026-07-31_f5aed8dc": {
+      "note_id": "f5aed8dc",
+      "para": "Projects",
+      "classified_at": "2026-07-31T07:27:23Z"
+    }
+  },
   "embeddings_version": "all-MiniLM-L6-v2",
-  "last_graph_build": null
+  "last_graph_build": "2026-08-01T08:44:17.831758+00:00"
 }

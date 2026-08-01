@@ -1,0 +1,288 @@
+{
+  "nodes": [
+    {
+      "id": "39c30ca7",
+      "label": "Transitioning to ML engineering by Q4",
+      "para": "Areas",
+      "tags": [
+        "career",
+        "goal"
+      ],
+      "summary": "Transitioning to ML engineering by Q4",
+      "content_preview": "Career goal: transition to ML engineering by Q4\n\n## Related\n\n- [[f5aed8dc]]",
+      "group": "Areas"
+    },
+    {
+      "id": "d805ee03",
+      "label": "Personal bio information",
+      "para": "Areas",
+      "tags": [
+        "personal",
+        "bio"
+      ],
+      "summary": "Personal bio information",
+      "content_preview": "My Name is Prajwal",
+      "group": "Areas"
+    },
+    {
+      "id": "08aa4657",
+      "label": "building a personal knowledge brain with RAG",
+      "para": "Projects",
+      "tags": [
+        "knowledge",
+        "management"
+      ],
+      "summary": "building a personal knowledge brain with RAG",
+      "content_preview": "SecondSelf project: build a personal knowledge brain with RAG",
+      "group": "Projects"
+    },
+    {
+      "id": "102829fb",
+      "label": "Detailed system architecture for SecondSelf, a personal knowledge brain",
+      "para": "Projects",
+      "tags": [
+        "architecture",
+        "personal-knowledge-management",
+        "system-design",
+        "ai"
+      ],
+      "summary": "Detailed system architecture for SecondSelf, a personal knowledge brain",
+      "content_preview": "File: architecture.md\n\n# SecondSelf — Detailed System Architecture\n\n\n\nArchitecture for a **personal knowledge brain** that captures anything, self-organizes with AI, visualizes as a graph, and answers…",
+      "group": "Projects"
+    },
+    {
+      "id": "2c76124b",
+      "label": "Developing a personal AI second brain for organizing notes and knowledge.",
+      "para": "Projects",
+      "tags": [
+        "project-management",
+        "ai",
+        "second-brain"
+      ],
+      "summary": "Developing a personal AI second brain for organizing notes and knowledge.",
+      "content_preview": "File: ProblemStatement.md\n\n# Project: SecondSelf — Your Personal AI Second Brain\n\n\n\n## The Big Problem\n\n\n\nEvery notes app fails the same way: you capture hundreds of notes, bookmarks, PDFs, and\n\nideas…",
+      "group": "Projects"
+    },
+    {
+      "id": "30d3ed7d",
+      "label": "Building a self-organizing wiki with graph visualization and Q&A",
+      "para": "Projects",
+      "tags": [
+        "knowledge-base",
+        "para-method"
+      ],
+      "summary": "Building a self-organizing wiki with graph visualization and Q&A",
+      "content_preview": "SecondSelf project: Build a personal knowledge base that auto-organizes notes, links, and files using PARA method, embeddings, and LLM classification. Goal: create a self-organizing wiki with graph vi…",
+      "group": "Projects"
+    },
+    {
+      "id": "37815ae4",
+      "label": "GitHub is a platform for version control and collaboration in software development.",
+      "para": "Projects",
+      "tags": [
+        "github",
+        "version-control",
+        "software-development"
+      ],
+      "summary": "GitHub is a platform for version control and collaboration in software development.",
+      "content_preview": "URL: https://github.com\n\nNotes: GitHub for version control\n\nContent:\nGitHub · Change is constant. GitHub keeps you ahead. · GitHub\nSkip to content\nYou signed in with another tab or window.\nReload\nto r…",
+      "group": "Projects"
+    },
+    {
+      "id": "5e522f9c",
+      "label": "Demo of ship checkpoint completed",
+      "para": "Projects",
+      "tags": [
+        "demo",
+        "checkpoint"
+      ],
+      "summary": "Demo of ship checkpoint completed",
+      "content_preview": "Ship checkpoint demo: Phase 1 complete",
+      "group": "Projects"
+    },
+    {
+      "id": "769085b8",
+      "label": "review of project phase completion",
+      "para": "Projects",
+      "tags": [
+        "project",
+        "management"
+      ],
+      "summary": "review of project phase completion",
+      "content_preview": "Weekly review: Phase 0 complete, starting Phase 1 capture\n\n## Related\n\n- [[87727685]]",
+      "group": "Projects"
+    },
+    {
+      "id": "87727685",
+      "label": "project phase complete",
+      "para": "Projects",
+      "tags": [
+        "status",
+        "update"
+      ],
+      "summary": "project phase complete",
+      "content_preview": "Phase 1 complete - ready for Phase 2\n\n## Related\n\n- [[769085b8]]",
+      "group": "Projects"
+    },
+    {
+      "id": "a5d0da0a",
+      "label": "Learning plan for embeddings, vector search, and prompt engineering",
+      "para": "Projects",
+      "tags": [
+        "learning",
+        "ai"
+      ],
+      "summary": "Learning plan for embeddings, vector search, and prompt engineering",
+      "content_preview": "Learning plan: embeddings, vector search, prompt engineering",
+      "group": "Projects"
+    },
+    {
+      "id": "ec9acd95",
+      "label": "Detailed system architecture for a personal knowledge brain",
+      "para": "Projects",
+      "tags": [
+        "architecture",
+        "personal-knowledge-management",
+        "system-design",
+        "pipeline-driven"
+      ],
+      "summary": "Detailed system architecture for a personal knowledge brain",
+      "content_preview": "File: architecture.md\n\n# SecondSelf — Detailed System Architecture\n\n\n\nArchitecture for a **personal knowledge brain** that captures anything, self-organizes with AI, visualizes as a graph, and answers…",
+      "group": "Projects"
+    },
+    {
+      "id": "f5aed8dc",
+      "label": "transition to ml engineering by q4",
+      "para": "Projects",
+      "tags": [
+        "career",
+        "ml"
+      ],
+      "summary": "transition to ml engineering by q4",
+      "content_preview": "Career goal: transition to ML engineering by Q4. Focus on RAG systems, embeddings, and production ML pipelines.\n\n## Related\n\n- [[39c30ca7]]",
+      "group": "Projects"
+    },
+    {
+      "id": "151365a5",
+      "label": "Sentence-transformers library for embeddings and semantic search",
+      "para": "Resources",
+      "tags": [
+        "huggingface",
+        "sentence-transformers",
+        "nlp",
+        "ml"
+      ],
+      "summary": "Sentence-transformers library for embeddings and semantic search",
+      "content_preview": "URL: https://huggingface.co/sentence-transformers\n\nNotes: Sentence-transformers library for embeddings, useful for semantic search and RAG\n\nContent:\nsentence-transformers (Sentence Transformers)\nAI &…",
+      "group": "Resources"
+    },
+    {
+      "id": "4cce48b3",
+      "label": "LinkedIn profile for Prajwal Sute",
+      "para": "Resources",
+      "tags": [
+        "profile",
+        "linkedin"
+      ],
+      "summary": "LinkedIn profile for Prajwal Sute",
+      "content_preview": "URL: https://www.linkedin.com/in/prajwal-sute-/",
+      "group": "Resources"
+    },
+    {
+      "id": "a69e027c",
+      "label": "A Python framework for sentence embedding and reranking models.",
+      "para": "Resources",
+      "tags": [
+        "huggingface",
+        "nlp",
+        "sentence-transformers",
+        "ai",
+        "ml"
+      ],
+      "summary": "A Python framework for sentence embedding and reranking models.",
+      "content_preview": "URL: https://huggingface.co/sentence-transformers\n\nContent:\nsentence-transformers (Sentence Transformers)\nAI & ML interests\nIn the following you find models tuned to be used for sentence / text embedd…",
+      "group": "Resources"
+    },
+    {
+      "id": "b0afc2ae",
+      "label": "Reminder to review an embeddings paper",
+      "para": "Resources",
+      "tags": [
+        "paper",
+        "review"
+      ],
+      "summary": "Reminder to review an embeddings paper",
+      "content_preview": "Remember to review embeddings paper",
+      "group": "Resources"
+    },
+    {
+      "id": "b869f005",
+      "label": "Paper on the Attention Is All You Need model for machine translation",
+      "para": "Resources",
+      "tags": [
+        "research",
+        "paper",
+        "machinelearning"
+      ],
+      "summary": "Paper on the Attention Is All You Need model for machine translation",
+      "content_preview": "URL: https://arxiv.org/abs/1706.03762\n\nNotes: Attention Is All You Need paper\n\nContent:\n[1706.03762] Attention Is All You Need\nSkip to main content\narXiv is now an independent nonprofit!\nLearn more\n×…",
+      "group": "Resources"
+    },
+    {
+      "id": "cb673be4",
+      "label": "GroqCloud platform for building and deploying AI models",
+      "para": "Resources",
+      "tags": [
+        "groq",
+        "ai"
+      ],
+      "summary": "GroqCloud platform for building and deploying AI models",
+      "content_preview": "URL: https://console.groq.com/\n\nContent:\nGroqCloud\nDocs\nLogin\nLog In\nBuild\nFast\nJoin\n2M+\ndevelopers building on GroqCloud\n™\nWe deliver inference with unmatched speed and cost, so you can ship fast.\nBy…",
+      "group": "Resources"
+    },
+    {
+      "id": "ef87baf9",
+      "label": "Streamlit documentation for data scientists and AI/ML engineers.",
+      "para": "Resources",
+      "tags": [
+        "documentation",
+        "streamlit",
+        "python"
+      ],
+      "summary": "Streamlit documentation for data scientists and AI/ML engineers.",
+      "content_preview": "URL: https://docs.streamlit.io/\n\nContent:\nStreamlit documentation\nStreamlit documentation\nStreamlit\nis an open-source Python framework for data scientists and AI/ML engineers to deliver dynamic data a…",
+      "group": "Resources"
+    }
+  ],
+  "edges": [
+    {
+      "source": "39c30ca7",
+      "target": "f5aed8dc",
+      "weight": 2.5,
+      "type": "semantic"
+    },
+    {
+      "source": "102829fb",
+      "target": "ec9acd95",
+      "weight": 2.5,
+      "type": "semantic"
+    },
+    {
+      "source": "769085b8",
+      "target": "87727685",
+      "weight": 2.5,
+      "type": "semantic"
+    },
+    {
+      "source": "151365a5",
+      "target": "a69e027c",
+      "weight": 2.5,
+      "type": "semantic"
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-08-01T08:44:17.831758+00:00",
+    "node_count": 20,
+    "edge_count": 4
+  }
+}

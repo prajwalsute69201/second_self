@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SecondSelf — Knowledge Graph</title>
+
+  <!-- vis-network from CDN -->
+  <script src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+
+  <style>
+    /* ------------------------------------------------------------------ reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ---------------------------------------------------------------- header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: #1a1d27;
+      border-bottom: 1px solid #2d3148;
+      flex-shrink: 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon { font-size: 1.5rem; }
+
+    .brand-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #a78bfa;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      color: #64748b;
+    }
+
+    /* stats strip */
+    .stats {
+      display: flex;
+      gap: 20px;
+      font-size: 0.78rem;
+      color: #94a3b8;
+    }
+
+    .stat-item { display: flex; align-items: center; gap: 5px; }
+    .stat-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* legend */
+    .legend {
+      display: flex;
+      gap: 14px;
+      font-size: 0.75rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 3px 8px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .legend-item:hover { border-color: #4b5563; }
+    .legend-item.active { border-color: #6366f1; background: #1e2035; }
+
+    .legend-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ------------------------------------------------------------------ main */
+    main {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #graph-canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ----------------------------------------------------------- tooltip */
+    #tooltip {
+      position: fixed;
+      max-width: 300px;
+      background: #1e2035;
+      border: 1px solid #3b4166;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      z-index: 9999;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    #tooltip.visible { opacity: 1; }
+
+    .tt-para {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+    }
+
+    .tt-summary {
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+    }
+
+    .tt-preview {
+      color: #94a3b8;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      border-top: 1px solid #2d3148;
+      padding-top: 6px;
+      margin-top: 2px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .tt-tags {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .tt-tag {
+      font-size: 0.68rem;
+      padding: 1px 6px;
+      background: #2d3148;
+      border-radius: 6px;
+      color: #94a3b8;
+    }
+
+    /* -------------------------------------------------------- info panel */
+    #info-panel {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: #1a1d27cc;
+      border: 1px solid #2d3148;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.75rem;
+      color: #64748b;
+      backdrop-filter: blur(4px);
+      pointer-events: none;
+    }
+
+    #info-panel kbd {
+      display: inline-block;
+      background: #2d3148;
+      color: #94a3b8;
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-size: 0.7rem;
+      font-family: inherit;
+    }
+
+    /* loading overlay */
+    #loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0f1117;
+      gap: 14px;
+      z-index: 100;
+    }
+
+    .spinner {
+      width: 36px; height: 36px;
+      border: 3px solid #2d3148;
+      border-top-color: #a78bfa;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-text { color: #64748b; font-size: 0.85rem; }
+
+    /* error */
+    #error-msg {
+      display: none;
+      position: absolute;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      color: #f87171;
+      font-size: 0.9rem;
+      background: #0f1117;
+      z-index: 100;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================================================================ HEADER -->
+<header>
+  <div class="brand">
+    <span class="brand-icon">🧠</span>
+    <div>
+      <div class="brand-name">SecondSelf</div>
+      <div class="brand-sub">Knowledge Graph</div>
+    </div>
+  </div>
+
+  <div class="stats" id="stats-strip">
+    <div class="stat-item">
+      <span class="stat-dot" style="background:#a78bfa"></span>
+      <span id="stat-nodes">— nodes</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-dot" style="background:#38bdf8"></span>
+      <span id="stat-edges">— edges</span>
+    </div>
+    <div class="stat-item" id="stat-selected" style="display:none">
+      <span class="stat-dot" style="background:#34d399"></span>
+      <span id="stat-selected-text"></span>
+    </div>
+  </div>
+
+  <!-- PARA legend / filter -->
+  <div class="legend" id="legend">
+    <!-- populated by JS -->
+  </div>
+</header>
+
+<!-- ================================================================== MAIN -->
+<main>
+  <div id="loading">
+    <div class="spinner"></div>
+    <div class="loading-text">Building your knowledge graph…</div>
+  </div>
+
+  <div id="error-msg">
+    <span style="font-size:2rem">⚠️</span>
+    <span id="error-text">Failed to load graph.json</span>
+    <span style="color:#64748b;font-size:0.78rem">
+      Run <code>python build_graph.py</code> then serve from project root.
+    </span>
+  </div>
+
+  <div id="graph-canvas"></div>
+</main>
+
+<!-- ============================================================== TOOLTIP -->
+<div id="tooltip"></div>
+
+<!-- =========================================================== INFO PANEL -->
+<div id="info-panel">
+  <kbd>scroll</kbd> zoom &nbsp;·&nbsp;
+  <kbd>drag</kbd> pan &nbsp;·&nbsp;
+  <kbd>click node</kbd> highlight connections &nbsp;·&nbsp;
+  <kbd>click canvas</kbd> reset
+</div>
+
+<!-- ================================================================ SCRIPT -->
+<script>
+  // ----------------------------------------------------------------- palette
+  const PARA_COLORS = {
+    Projects:  { bg: "#7c3aed", border: "#a78bfa", text: "#f5f3ff" },
+    Areas:     { bg: "#0369a1", border: "#38bdf8", text: "#e0f2fe" },
+    Resources: { bg: "#065f46", border: "#34d399", text: "#d1fae5" },
+    Archives:  { bg: "#78350f", border: "#fbbf24", text: "#fef3c7" },
+  };
+
+  const DEFAULT_COLOR = { bg: "#374151", border: "#9ca3af", text: "#f3f4f6" };
+
+  function paraColor(para) {
+    return PARA_COLORS[para] || DEFAULT_COLOR;
+  }
+
+  // ---------------------------------------------------------------- helpers
+  function escapeHtml(str) {
+    return String(str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  function clampPreview(text, max = 180) {
+    const clean = text.replace(/#+\s*/g, "").replace(/\[\[.*?\]\]/g, "").trim();
+    return clean.length > max ? clean.slice(0, max).trimEnd() + "…" : clean;
+  }
+
+  // ------------------------------------------------------------ tooltip DOM
+  const tooltipEl = document.getElementById("tooltip");
+
+  function showTooltip(node, x, y) {
+    const c = paraColor(node.para);
+    const paraStyle = `background:${c.bg}22;color:${c.border};border:1px solid ${c.border}44;`;
+    const tags = (node.tags || []).map(t =>
+      `<span class="tt-tag">#${escapeHtml(t)}</span>`
+    ).join("");
+
+    tooltipEl.innerHTML = `
+      <div>
+        <span class="tt-para" style="${paraStyle}">${escapeHtml(node.para)}</span>
+      </div>
+      <div class="tt-summary">${escapeHtml(node.summary || node.label || node.id)}</div>
+      ${node.content_preview
+        ? `<div class="tt-preview">${escapeHtml(clampPreview(node.content_preview))}</div>`
+        : ""}
+      ${tags ? `<div class="tt-tags">${tags}</div>` : ""}
+    `;
+
+    // Position — keep within viewport
+    const pad = 16;
+    const tw = 300, th = 160;
+    let left = x + 14;
+    let top  = y - 10;
+    if (left + tw > window.innerWidth - pad)  left = x - tw - 14;
+    if (top  + th > window.innerHeight - pad) top  = window.innerHeight - th - pad;
+    if (top < pad) top = pad;
+
+    tooltipEl.style.left = left + "px";
+    tooltipEl.style.top  = top  + "px";
+    tooltipEl.classList.add("visible");
+  }
+
+  function hideTooltip() {
+    tooltipEl.classList.remove("visible");
+  }
+
+  // --------------------------------------------------------------- legend
+  function buildLegend(groups) {
+    const legend = document.getElementById("legend");
+    legend.innerHTML = "";
+    groups.forEach(para => {
+      const c = paraColor(para);
+      const el = document.createElement("div");
+      el.className = "legend-item active";
+      el.dataset.para = para;
+      el.innerHTML = `
+        <span class="legend-dot" style="background:${c.bg};border:2px solid ${c.border}"></span>
+        ${escapeHtml(para)}
+      `;
+      el.addEventListener("click", () => toggleParaFilter(para, el));
+      legend.appendChild(el);
+    });
+  }
+
+  // --------------------------------------------------------- para filter
+  const hiddenParas = new Set();
+
+  function toggleParaFilter(para, el) {
+    if (hiddenParas.has(para)) {
+      hiddenParas.delete(para);
+      el.classList.add("active");
+    } else {
+      hiddenParas.add(para);
+      el.classList.remove("active");
+    }
+    applyParaFilter();
+  }
+
+  function applyParaFilter() {
+    if (!window._nodesDataset || !window._edgesDataset || !window._rawGraph) return;
+    const { nodes: rawNodes, edges: rawEdges } = window._rawGraph;
+
+    const visibleIds = new Set(
+      rawNodes.filter(n => !hiddenParas.has(n.para)).map(n => n.id)
+    );
+
+    const visNodes = rawNodes.map(n => ({
+      ...buildVisNode(n),
+      hidden: !visibleIds.has(n.id),
+    }));
+
+    const visEdges = rawEdges.map((e, i) => ({
+      ...buildVisEdge(e, i),
+      hidden: !visibleIds.has(e.source) || !visibleIds.has(e.target),
+    }));
+
+    window._nodesDataset.update(visNodes);
+    window._edgesDataset.update(visEdges);
+  }
+
+  // --------------------------------------------------------------- builders
+  function buildVisNode(n) {
+    const c = paraColor(n.para);
+    return {
+      id: n.id,
+      label: wrapLabel(n.label || n.summary || n.id),
+      title: undefined,      // we use custom tooltip, not vis built-in
+      shape: "dot",
+      size: 14,
+      color: {
+        background: c.bg,
+        border: c.border,
+        highlight: { background: c.border, border: "#ffffff" },
+        hover:      { background: c.border, border: "#ffffff" },
+      },
+      font: {
+        color: c.text,
+        size: 11,
+        face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
+      },
+      _data: n,
+    };
+  }
+
+  function buildVisEdge(e, idx) {
+    return {
+      id: `edge-${idx}`,
+      from: e.source,
+      to: e.target,
+      width: Math.max(1, Math.log2(e.weight + 1)),
+      color: { color: "#3b4166", highlight: "#a78bfa", hover: "#6366f1", opacity: 0.85 },
+      smooth: { type: "dynamic" },
+    };
+  }
+
+  function wrapLabel(text, maxLen = 28) {
+    if (!text || text.length <= maxLen) return text;
+    // break at word boundaries
+    const words = text.split(" ");
+    const lines = [];
+    let current = "";
+    for (const w of words) {
+      if ((current + " " + w).trim().length > maxLen) {
+        if (current) lines.push(current.trim());
+        current = w;
+      } else {
+        current = (current + " " + w).trim();
+      }
+    }
+    if (current) lines.push(current.trim());
+    return lines.slice(0, 3).join("\n") + (lines.length > 3 ? "…" : "");
+  }
+
+  // ===================================================== MAIN INIT
+  async function init() {
+    // Resolve path to graph.json relative to this file
+    const graphUrl = new URL("../data/graph.json", window.location.href).href;
+
+    let graphData;
+    try {
+      const res = await fetch(graphUrl);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      graphData = await res.json();
+    } catch (err) {
+      document.getElementById("loading").style.display = "none";
+      const errEl = document.getElementById("error-msg");
+      errEl.style.display = "flex";
+      document.getElementById("error-text").textContent =
+        `Could not load graph.json: ${err.message}`;
+      return;
+    }
+
+    window._rawGraph = graphData;
+
+    // Update stats
+    document.getElementById("stat-nodes").textContent =
+      `${graphData.metadata.node_count} nodes`;
+    document.getElementById("stat-edges").textContent =
+      `${graphData.metadata.edge_count} edges`;
+
+    // Build legend
+    const groups = [...new Set(graphData.nodes.map(n => n.para))].sort();
+    buildLegend(groups);
+
+    // Build vis datasets
+    const visNodes = graphData.nodes.map(buildVisNode);
+    const visEdges = graphData.edges.map(buildVisEdge);
+
+    const nodesDataset = new vis.DataSet(visNodes);
+    const edgesDataset = new vis.DataSet(visEdges);
+    window._nodesDataset = nodesDataset;
+    window._edgesDataset = edgesDataset;
+
+    // Map id → raw node data for tooltip
+    const nodeMap = {};
+    graphData.nodes.forEach(n => { nodeMap[n.id] = n; });
+
+    // -------------------------------------------------- vis-network options
+    const options = {
+      physics: {
+        enabled: true,
+        solver: "barnesHut",
+        barnesHut: {
+          gravitationalConstant: -8000,
+          centralGravity: 0.3,
+          springLength: 150,
+          springConstant: 0.04,
+          damping: 0.09,
+          avoidOverlap: 0.3,
+        },
+        stabilization: {
+          enabled: true,
+          iterations: 200,
+          updateInterval: 25,
+          fit: true,
+        },
+      },
+      interaction: {
+        hover: true,
+        tooltipDelay: 0,
+        hideEdgesOnDrag: false,
+        dragNodes: true,
+        dragView: true,
+        zoomView: true,
+        navigationButtons: false,
+        keyboard: false,
+      },
+      edges: {
+        arrows: { to: { enabled: false } },
+        selectionWidth: 2,
+      },
+      nodes: {
+        borderWidth: 2,
+        borderWidthSelected: 3,
+        shadow: { enabled: true, color: "rgba(0,0,0,0.4)", size: 8, x: 2, y: 2 },
+      },
+      layout: {
+        improvedLayout: true,
+      },
+    };
+
+    const container = document.getElementById("graph-canvas");
+    const network = new vis.Network(
+      container,
+      { nodes: nodesDataset, edges: edgesDataset },
+      options
+    );
+
+    // Hide loading overlay once stabilised
+    network.once("stabilizationIterationsDone", () => {
+      document.getElementById("loading").style.display = "none";
+      network.fit({ animation: { duration: 600, easingFunction: "easeInOutQuad" } });
+    });
+
+    // Fallback: hide after 4 s in case event never fires
+    setTimeout(() => {
+      document.getElementById("loading").style.display = "none";
+    }, 4000);
+
+    // -------------------------------------------------- hover → tooltip
+    network.on("hoverNode", ({ node, event }) => {
+      const raw = nodeMap[node];
+      if (!raw) return;
+      showTooltip(raw, event.clientX, event.clientY);
+    });
+
+    network.on("blurNode", () => hideTooltip());
+
+    // Update tooltip position while mouse moves over a hovered node
+    container.addEventListener("mousemove", (e) => {
+      if (tooltipEl.classList.contains("visible")) {
+        const pad = 16, tw = 300, th = 160;
+        let left = e.clientX + 14;
+        let top  = e.clientY - 10;
+        if (left + tw > window.innerWidth - pad)  left = e.clientX - tw - 14;
+        if (top  + th > window.innerHeight - pad) top  = window.innerHeight - th - pad;
+        if (top < pad) top = pad;
+        tooltipEl.style.left = left + "px";
+        tooltipEl.style.top  = top  + "px";
+      }
+    });
+
+    // ------------------------------------------------ click → highlight
+    let selectedNodeId = null;
+
+    network.on("click", ({ nodes, edges }) => {
+      if (nodes.length === 0) {
+        // Clicked canvas — reset all
+        resetHighlight(nodesDataset, edgesDataset, graphData);
+        document.getElementById("stat-selected").style.display = "none";
+        selectedNodeId = null;
+        return;
+      }
+
+      const clickedId = nodes[0];
+      if (clickedId === selectedNodeId) {
+        // Clicking same node again resets
+        resetHighlight(nodesDataset, edgesDataset, graphData);
+        document.getElementById("stat-selected").style.display = "none";
+        selectedNodeId = null;
+        return;
+      }
+
+      selectedNodeId = clickedId;
+      highlightNode(clickedId, nodesDataset, edgesDataset, graphData);
+
+      const raw = nodeMap[clickedId];
+      if (raw) {
+        document.getElementById("stat-selected").style.display = "flex";
+        document.getElementById("stat-selected-text").textContent =
+          (raw.summary || raw.id).slice(0, 40) + (raw.summary?.length > 40 ? "…" : "");
+      }
+    });
+
+    // ----------------------------------------- pulse animation on nodes
+    // Subtle size pulse while graph is still stabilising
+    let pulseUp = true;
+    const BASE_SIZE = 14;
+    const pulsing = new Set(graphData.nodes.map(n => n.id));
+
+    network.on("stabilizationIterationsDone", () => pulsing.clear());
+
+    let pulseFrame = 0;
+    function pulseStep() {
+      if (pulsing.size > 0) {
+        pulseFrame++;
+        if (pulseFrame % 3 === 0) {
+          const delta = pulseUp ? 1 : -1;
+          const updates = [...pulsing].map(id => ({
+            id,
+            size: BASE_SIZE + delta,
+          }));
+          nodesDataset.update(updates);
+          if (pulseFrame % 6 === 0) pulseUp = !pulseUp;
+        }
+        requestAnimationFrame(pulseStep);
+      }
+    }
+    requestAnimationFrame(pulseStep);
+  }
+
+  // ================================================= HIGHLIGHT helpers
+  function highlightNode(nodeId, nodesDS, edgesDS, graph) {
+    const connectedNodes = new Set([nodeId]);
+    const connectedEdges = new Set();
+
+    graph.edges.forEach((e, i) => {
+      if (e.source === nodeId || e.target === nodeId) {
+        connectedEdges.add(`edge-${i}`);
+        connectedNodes.add(e.source === nodeId ? e.target : e.source);
+      }
+    });
+
+    // Dim everything not connected
+    const nodeUpdates = graph.nodes.map(n => {
+      const c = paraColor(n.para);
+      const isConnected = connectedNodes.has(n.id);
+      const isFocus     = n.id === nodeId;
+      return {
+        id: n.id,
+        size: isFocus ? 20 : isConnected ? 16 : 12,
+        color: {
+          background: isConnected ? c.bg    : "#1e2035",
+          border:     isConnected ? c.border : "#2d3148",
+          highlight:  { background: c.border, border: "#ffffff" },
+        },
+        font: {
+          color: isConnected ? c.text : "#374151",
+        },
+        opacity: isConnected ? 1 : 0.35,
+      };
+    });
+
+    const edgeUpdates = [];
+    edgesDS.forEach(e => {
+      edgeUpdates.push({
+        id: e.id,
+        color: connectedEdges.has(e.id)
+          ? { color: "#a78bfa", highlight: "#c4b5fd", opacity: 1 }
+          : { color: "#1e2035", opacity: 0.15 },
+        width: connectedEdges.has(e.id) ? 2.5 : 0.5,
+      });
+    });
+
+    nodesDS.update(nodeUpdates);
+    edgesDS.update(edgeUpdates);
+  }
+
+  function resetHighlight(nodesDS, edgesDS, graph) {
+    const nodeUpdates = graph.nodes.map(n => buildVisNode(n));
+    const edgeUpdates = graph.edges.map((e, i) => buildVisEdge(e, i));
+    nodesDS.update(nodeUpdates);
+    edgesDS.update(edgeUpdates);
+  }
+
+  // ============================================================= BOOT
+  init().catch(err => {
+    console.error("Graph init error:", err);
+    document.getElementById("loading").style.display = "none";
+    const errEl = document.getElementById("error-msg");
+    errEl.style.display = "flex";
+    document.getElementById("error-text").textContent = err.message;
+  });
+</script>
+
+</body>
+</html>

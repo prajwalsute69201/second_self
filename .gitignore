@@ -1,6 +1,10 @@
 .venv/
 .env
-data/embeddings.pkl
+# embeddings.pkl must be committed so the deployed app can answer questions
+# data/embeddings.pkl  ← intentionally not ignored for deployment
 __pycache__/
 *.pyc
 .DS_Store
+raw/
+.streamlit/secrets.toml
+.obsidian/

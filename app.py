@@ -524,7 +524,7 @@ def _render_ask_section() -> None:
     with ask_col:
         question = st.text_input(
             "Question",
-            placeholder='e.g. "What are my active projects?" or "What ML resources have I saved?"',
+            placeholder='e.g. "Ask Your Question?"',
             label_visibility="collapsed",
             key="ask_input",
         )

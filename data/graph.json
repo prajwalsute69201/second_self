@@ -1,6 +1,30 @@
 {
   "nodes": [
     {
+      "id": "14544360",
+      "label": "Umpires make key decisions in cricket matches",
+      "para": "Areas",
+      "tags": [
+        "cricket",
+        "umpires"
+      ],
+      "summary": "Umpires make key decisions in cricket matches",
+      "content_preview": "Umpires are responsible for making important decisions during a cricket match. They decide whether a batsman is out, whether a delivery is legal, and whether runs or extras should be awarded. In profe…",
+      "group": "Areas"
+    },
+    {
+      "id": "339b6341",
+      "label": "bowling techniques in cricket",
+      "para": "Areas",
+      "tags": [
+        "cricket",
+        "bowling"
+      ],
+      "summary": "bowling techniques in cricket",
+      "content_preview": "The bowler delivers the ball toward the batsman with the aim of getting the batsman out or preventing runs. Different types of bowlers use different techniques, including fast bowling and spin bowling…",
+      "group": "Areas"
+    },
+    {
       "id": "39c30ca7",
       "label": "Transitioning to ML engineering by Q4",
       "para": "Areas",
@@ -13,6 +37,102 @@
       "group": "Areas"
     },
     {
+      "id": "59ce1cb0",
+      "label": "description of the cricket world cup",
+      "para": "Areas",
+      "tags": [
+        "sports",
+        "cricket"
+      ],
+      "summary": "description of the cricket world cup",
+      "content_preview": "The Cricket World Cup is one of the most important tournaments in international cricket. The men's ODI World Cup is organized by the International Cricket Council (ICC). Teams from different countries…",
+      "group": "Areas"
+    },
+    {
+      "id": "5cee7033",
+      "label": "brief overview of batting in cricket",
+      "para": "Areas",
+      "tags": [
+        "cricket",
+        "sports"
+      ],
+      "summary": "brief overview of batting in cricket",
+      "content_preview": "Batting is an important part of cricket. The batsman tries to score runs by hitting the ball with the bat. Runs can be scored by running between the wickets or by hitting boundaries. A boundary that r…",
+      "group": "Areas"
+    },
+    {
+      "id": "5da24830",
+      "label": "t20 cricket is a fast-paced international format with 20 overs per team",
+      "para": "Areas",
+      "tags": [
+        "cricket",
+        "sports"
+      ],
+      "summary": "t20 cricket is a fast-paced international format with 20 overs per team",
+      "content_preview": "T20 cricket is one of the shortest international formats. Each team gets a maximum of 20 overs. Because the game is fast-paced, batsmen often try to score runs quickly, while bowlers and fielders try…",
+      "group": "Areas"
+    },
+    {
+      "id": "69fd7b5a",
+      "label": "cricket formats include test, odi, and t20i",
+      "para": "Areas",
+      "tags": [
+        "cricket",
+        "sports"
+      ],
+      "summary": "cricket formats include test, odi, and t20i",
+      "content_preview": "There are three major international formats of cricket: Test cricket, One Day International (ODI), and Twenty20 International (T20I). Test matches can last up to five days, while ODI matches have a li…",
+      "group": "Areas"
+    },
+    {
+      "id": "9c465495",
+      "label": "one day international cricket format details",
+      "para": "Areas",
+      "tags": [
+        "cricket",
+        "sports"
+      ],
+      "summary": "one day international cricket format details",
+      "content_preview": "One Day International cricket is a limited-overs format. In a standard ODI, each team gets a maximum of 50 overs to score runs. ODI matches generally take several hours to complete.\n\n## Related\n\n- [[6…",
+      "group": "Areas"
+    },
+    {
+      "id": "a5d187c1",
+      "label": "cricket is a bat-and-ball sport played between two teams",
+      "para": "Areas",
+      "tags": [
+        "sports",
+        "cricket"
+      ],
+      "summary": "cricket is a bat-and-ball sport played between two teams",
+      "content_preview": "Cricket is a bat-and-ball sport played between two teams. Each team usually has eleven players. The game is played on a large field with a rectangular pitch in the center. The main aim is to score mor…",
+      "group": "Areas"
+    },
+    {
+      "id": "a98879bd",
+      "label": "longest format of the game, played over 5 days",
+      "para": "Areas",
+      "tags": [
+        "cricket",
+        "sports"
+      ],
+      "summary": "longest format of the game, played over 5 days",
+      "content_preview": "Test cricket is the longest format of the game. A Test match is normally played over a maximum of five days. Each team can have two innings, and the format tests a player's batting, bowling, fielding,…",
+      "group": "Areas"
+    },
+    {
+      "id": "c06f2288",
+      "label": "cricket origin and popularity",
+      "para": "Areas",
+      "tags": [
+        "geography",
+        "sports"
+      ],
+      "summary": "cricket origin and popularity",
+      "content_preview": "Cricket originated in England and gradually became popular in many countries around the world. Today, it is especially popular in countries such as India, Australia, England, Pakistan, South Africa, N…",
+      "group": "Areas"
+    },
+    {
       "id": "d805ee03",
       "label": "Personal bio information",
       "para": "Areas",
@@ -22,6 +142,18 @@
       ],
       "summary": "Personal bio information",
       "content_preview": "My Name is Prajwal",
+      "group": "Areas"
+    },
+    {
+      "id": "e92effac",
+      "label": "fielders try to stop the ball and catch batsmen out",
+      "para": "Areas",
+      "tags": [
+        "cricket",
+        "fielding"
+      ],
+      "summary": "fielders try to stop the ball and catch batsmen out",
+      "content_preview": "Fielding is the work done by players who are not currently batting or bowling. Fielders try to stop the ball, save runs, catch batsmen out, and run out batsmen. Good fielding can have a major impact o…",
       "group": "Areas"
     },
     {
@@ -262,6 +394,24 @@
       "type": "semantic"
     },
     {
+      "source": "5da24830",
+      "target": "69fd7b5a",
+      "weight": 2.5,
+      "type": "semantic"
+    },
+    {
+      "source": "69fd7b5a",
+      "target": "9c465495",
+      "weight": 2.5,
+      "type": "semantic"
+    },
+    {
+      "source": "69fd7b5a",
+      "target": "a98879bd",
+      "weight": 2.5,
+      "type": "semantic"
+    },
+    {
       "source": "102829fb",
       "target": "ec9acd95",
       "weight": 2.5,
@@ -281,8 +431,8 @@
     }
   ],
   "metadata": {
-    "generated_at": "2026-08-01T08:44:17.831758+00:00",
-    "node_count": 20,
-    "edge_count": 4
+    "generated_at": "2026-08-01T13:12:21.844314+00:00",
+    "node_count": 31,
+    "edge_count": 7
   }
 }

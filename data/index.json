@@ -99,8 +99,63 @@
       "note_id": "f5aed8dc",
       "para": "Projects",
       "classified_at": "2026-07-31T07:27:23Z"
+    },
+    "2026-08-01_14544360": {
+      "note_id": "14544360",
+      "para": "Areas",
+      "classified_at": "2026-08-01T13:11:26Z"
+    },
+    "2026-08-01_339b6341": {
+      "note_id": "339b6341",
+      "para": "Areas",
+      "classified_at": "2026-08-01T13:11:26Z"
+    },
+    "2026-08-01_59ce1cb0": {
+      "note_id": "59ce1cb0",
+      "para": "Areas",
+      "classified_at": "2026-08-01T13:11:26Z"
+    },
+    "2026-08-01_5cee7033": {
+      "note_id": "5cee7033",
+      "para": "Areas",
+      "classified_at": "2026-08-01T13:11:27Z"
+    },
+    "2026-08-01_5da24830": {
+      "note_id": "5da24830",
+      "para": "Areas",
+      "classified_at": "2026-08-01T13:11:29Z"
+    },
+    "2026-08-01_69fd7b5a": {
+      "note_id": "69fd7b5a",
+      "para": "Areas",
+      "classified_at": "2026-08-01T13:11:50Z"
+    },
+    "2026-08-01_9c465495": {
+      "note_id": "9c465495",
+      "para": "Areas",
+      "classified_at": "2026-08-01T13:11:51Z"
+    },
+    "2026-08-01_a5d187c1": {
+      "note_id": "a5d187c1",
+      "para": "Areas",
+      "classified_at": "2026-08-01T13:11:51Z"
+    },
+    "2026-08-01_a98879bd": {
+      "note_id": "a98879bd",
+      "para": "Areas",
+      "classified_at": "2026-08-01T13:11:51Z"
+    },
+    "2026-08-01_c06f2288": {
+      "note_id": "c06f2288",
+      "para": "Areas",
+      "classified_at": "2026-08-01T13:11:52Z"
+    },
+    "2026-08-01_e92effac": {
+      "note_id": "e92effac",
+      "para": "Areas",
+      "classified_at": "2026-08-01T13:11:53Z"
     }
   },
   "embeddings_version": "all-MiniLM-L6-v2",
-  "last_graph_build": "2026-08-01T08:44:17.831758+00:00"
+  "last_graph_build": "2026-08-01T13:12:21.844314+00:00"
 }
